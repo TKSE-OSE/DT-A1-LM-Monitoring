@@ -16,24 +16,25 @@ while True:
  print("Current Timestamp =", current_time)
 
  #HDD Space
- totmem = "Total: %d GB" % (total // (2**30));
- usedmem = "Used: %d GB" % (used // (2**30));
+ totmem = "Total: %d GB" % (total // (2**30))
+ usedmem = "Used: %d GB" % (used // (2**30))
 
  print("="*40, "Memory Info", "="*37)                           #Header
  print(totmem)
  print(usedmem)
 
  #RAM
- perram =psutil.virtual_memory().percent;
- usedram = psutil.virtual_memory().used /1000000000;
+ perram =psutil.virtual_memory().percent
+ usedram = psutil.virtual_memory().used /1000000000
 
  print("="*40, "RAM Info", "="*40)                              #Header
  print(perram, "%")                                             #Memory use in %
  print(usedram, "GB")                                           #Memory use in GB
 
  #CPU
- cpuper = psutil.cpu_percent();
+ cpuper = psutil.cpu_percent()
  cpufreq = psutil.cpu_freq()
+ 
 
  print("="*40, "CPU Info", "="*40)                              #Header
  print(f"Current Frequency: {cpufreq.current:.2f}Mhz")          #Momentante Frequenz
@@ -46,17 +47,18 @@ while True:
   database="monitoringtask") 
  mycursor = mydb.cursor()                                            
                                                
- sqltm = "INSERT INTO memory (id, computer_id, total, used) VALUES ('1','1',totmem,usedmem);"
+ sqlmemory = "INSERT INTO memory (id, computer_id, total, used) VALUES ('1','1','1','1');"
   
- sqlpr = "INSERT INTO ram (id, computer_id, percentual, used) VALUES ('1','1',perram,usedram);"
+ sqlram = "INSERT INTO ram (id, computer_id, percentual, used) VALUES ('1','1','1','1');"
 
- sqlcf = "INSERT INTO cpu (id, computer_id, frequency, percent) VALUES ('1','1',cpufreq,cpuper);"
+ sqlcpu = "INSERT INTO cpu (id, computer_id, frequency, percent) VALUES ('1', '1', '1', '1');"
+
                
  # Insert into cpu (id, computerid, frequency, percent) VALUES ()
 
- mycursor.execute(sqltm)
- mycursor.execute(sqlpr)
- mycursor.execute(sqlcf)
+ mycursor.execute(sqlmemory)
+ mycursor.execute(sqlram)
+ mycursor.execute(sqlcpu)
  mydb.commit()                             
                                              
  print(mycursor.rowcount, "record inserted.") 
